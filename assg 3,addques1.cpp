@@ -1,14 +1,20 @@
 #include<iostream>
+#include<stack>
 using namespace std;
+std::stack<int> s;
 void smallestelement(int arr[],int n){
-		for (int i=0;i<n;i++){
-		for (int j=i;j>=0;j--){
-			if(arr[j]<arr[i]){
-				cout<< "for"<<arr[i]<< "the element is"<<arr[j]<<endl;
-				break;
-			}
-		}
-	}
+	s.push(arr[0]);
+for (int i = 0; i < n; i++) {
+        while (!s.empty() && s.top() >= arr[i]) {
+            s.pop();
+        }
+        if (s.empty()) {
+            cout <<-1<<endl;
+        } else {
+            cout <<s.top()<<endl;
+        }
+        s.push(arr[i]);
+    }
 }
 int main(){
 	int arr[100];
@@ -21,3 +27,4 @@ for (int i=0;i<n;i++){
 }
 smallestelement(arr,n);
 }
+
