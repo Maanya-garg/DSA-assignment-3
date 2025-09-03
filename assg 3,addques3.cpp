@@ -1,18 +1,22 @@
 #include<iostream>
+#include<stack>
 using namespace std;
+std::stack<int> s;
 void greatestelement(int arr[],int n){
-		for (int i=0;i<n;i++){
-			bool found=false;
-		for (int j=i+1;j<n;j++){
-			if(arr[j]>arr[i]){
-				cout<< "for"<<arr[i]<< "the element is"<<arr[j]<<endl;
-				found=true;
-				break;
-			}
-		}
-		if (!found){
-			cout<< "for"<<arr[i]<< "the element is"<<-1<<endl;
-		}
+	int result[n];
+for (int i = n-1; i >=0 ; i--) {
+        while (!s.empty() && s.top() <= arr[i]) {
+            s.pop();
+        }
+        if (s.empty()) {
+            result[i]=-1;
+        } else {
+            result[i]=s.top();
+        }
+        s.push(arr[i]);
+    }
+    for (int i=0;i<n;i++){
+    	cout<<result[i]<<" ";
 	}
 }
 int main(){
@@ -26,3 +30,4 @@ for (int i=0;i<n;i++){
 }
 greatestelement(arr,n);
 }
+
